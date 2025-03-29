@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    SEARCH
+{% endblock %}
+
+{% block main %}
+    <div class="row row-cols-1 row-cols-md-4 g-4 bg-light text-center p-2 border">
+
+        {% for row in rows %}
+            <div class="col p-2">
+
+                <div class="card h-100">
+
+                    <img src="{{ row.image }}" border="0" class="card-img-top" alt="image" height="240">
+
+                    <div class="card-header bg-success">
+                        <small class="text-white">{{ row.service }} # {{ row.id }}</small>
+                    </div>
+
+                    <div class="card-body">
+                        <p class="card-title small">
+                            <strong>{{ row.title }}</strong>
+                        </p>
+                        <p class="card-text small">{{ row.category }} | {{ row.location }}</p>
+                        {% if row.service == "Accommodation" %}
+                            <a href="/engage-{{ row.id }}" class="btn btn-primary d-block"><small>Book</small></a>
+                        {% elif row.service == "Consultancy" %}
+                            <a href="/engage-{{ row.id }}" class="btn btn-primary d-block"><small>Get</small></a>
+                        {% elif row.service == "Transportation" %}
+                            <a href="/engage-{{ row.id }}" class="btn btn-primary d-block"><small>Ride</small></a>
+                        {% endif %}
+                    </div>
+
+                    {% if row.service == "Accommodation" %}
+                        <div class="card-footer">
+                            <small class="text-muted">{{ row.revenue | usd }} / day</small>
+                        </div>
+                    {% elif row.service == "Consultancy" %}
+                        <div class="card-footer">
+                            <small class="text-muted">{{ row.revenue | usd }} / session</small>
+                        </div>
+                    {% elif row.service == "Transportation" %}
+                        <div class="card-footer">
+                            <small class="text-muted">{{ row.revenue | usd }} / trip</small>
+                        </div>
+                    {% endif %}
+
+                    <div class="card-footer bg-success">
+                        <small class="text-white">Provider # {{ row.provider }}</small>
+                    </div>
+
+                    <div class="card-footer">
+                        <small class="">{{ row.details }}</small>
+                    </div>
+
+                </div>
+
+            </div>
+        {% endfor %}
+
+    </div>
+{% endblock %}

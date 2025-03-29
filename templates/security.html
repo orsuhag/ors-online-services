@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    SECURITY
+{% endblock %}
+
+{% block main %}
+    <div class="text-left bg-light border">
+
+        <div class="text-center bg-warning p-3">
+            <h6><i class="fa fa-question-circle-o"></i> Security Questions</h6>
+        </div>
+
+        <div class="container p-3">
+
+            <form action="/security" method="post">
+
+                <label for="code">Security Code :</label>
+                <div class="form-group">
+                    <input id="code" class="form-control" name="code" type="text" placeholder="123456" pattern="[0-9]{6}" required title="Digits are allowed only.">
+                </div>
+
+                <label for="one">Your Birthplace :</label>
+                <div class="form-group">
+                    <input id="one" class="form-control" name="one" type="text" placeholder="XYZ (last three letters)" pattern="[A-Z]{3}" required title="Capital letters are allowed only.">
+                </div>
+
+                <label for="two">Your School :</label>
+                <div class="form-group">
+                    <input id="two" class="form-control" name="two" type="text" placeholder="ABC (first three letters)" pattern="[A-Z]{3}" required title="Capital letters are allowed only.">
+                </div>
+
+                <label for="three">Your Nickname :</label>
+                <div class="form-group">
+                    <input id="three" class="form-control" name="three" type="text" placeholder="AZ (first & last letters)" pattern="[A-Z]{2}" required title="Capital letters are allowed only.">
+                </div>
+
+                <div class="text-center">
+                    <button class="btn btn-warning" type="submit">Submit</button>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+{% endblock %}

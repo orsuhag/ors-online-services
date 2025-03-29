@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    EMPTY#{{ service_id }}
+{% endblock %}
+
+{% block main %}
+    <div class="text-center bg-light border">
+
+        <div class="bg-success p-3">
+
+            <h6>
+                <i class="fa fa-minus-circle"></i> Empty Service
+            </h6>
+
+        </div>
+
+        <div class="container p-3">
+
+            <form action="/empty-{{ service_id }}" method="post">
+
+                <div class="form-group">
+
+                    <select class="form-control form-select" name="confirm" required>
+
+                        <option disabled selected value="">Select Option</option>
+
+                        <option class="bg-success text-white text-center" disabled value="">Are you sure to empty?</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+
+                    </select>
+
+                </div>
+
+                <button class="btn btn-success" type="submit">Empty</button>
+
+            </form>
+
+        </div>
+
+    </div>
+{% endblock %}

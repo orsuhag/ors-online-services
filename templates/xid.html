@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    WITHDRAW#{{ transaction_id }}
+{% endblock %}
+
+{% block main %}
+    <div class="text-center bg-light border">
+
+        <div class="bg-success p-3">
+
+            <h6>
+                <i class="fa fa-cogs"></i> Admin Input
+            </h6>
+
+        </div>
+
+        <div class="container p-3">
+
+            <form action="/xid-{{ transaction_id }}" method="post">
+
+                <div class="form-group">
+
+                    <label for="xid" class="form-control btn btn-outline-success my-3">Transaction ID</label>
+                    <input id="xid" class="form-control" name="xid" placeholder="Enter XID (Bank Transfer)" type="text" required value="{{ row.xid }}">
+
+                </div>
+
+                <button class="btn btn-success" type="submit">Insert</button>
+
+            </form>
+
+        </div>
+
+    </div>
+{% endblock %}

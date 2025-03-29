@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    ENGAGE#{{ service_id }}
+{% endblock %}
+
+{% block main %}
+    <div class="text-center bg-light border">
+
+        <div class="bg-success p-3">
+
+            <h6>
+                <i class="fa fa-american-sign-language-interpreting"></i> Engage Service
+            </h6>
+
+        </div>
+
+        <div class="container p-3">
+
+            <form action="/engage-{{ service_id }}" method="post">
+
+                <div class="form-group">
+
+                    <select class="form-control form-select" name="confirm" required>
+
+                        <option disabled selected value="">Select Option</option>
+
+                        <option class="bg-success text-white text-center" disabled value="">Are you ready to engage?</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+
+                    </select>
+
+                </div>
+
+                <button class="btn btn-success" type="submit">Engage</button>
+
+            </form>
+
+        </div>
+
+    </div>
+{% endblock %}

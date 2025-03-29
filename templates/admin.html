@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    ADMIN
+{% endblock %}
+
+{% block main %}
+    <table class="table table-striped table-hover table-responsive-md">
+
+        <tr>
+
+            <th>#</th>
+
+            <th>Type</th>
+
+            <th>Entity</th>
+
+            <th>Amount</th>
+
+            <th>XID</th>
+
+            <th>Status</th>
+
+            <th>Action</th>
+
+            <th>Transacted</th>
+
+        </tr>
+
+        {% for transaction in transactions %}
+            <tr>
+
+                <th>{{ transaction.id }}</th>
+
+                <td>{{ transaction.type }}</td>
+
+                <td>{{ transaction.entity }}</td>
+
+                <td>{{ transaction.amount | usd }}</td>
+
+                <td>{{ transaction.xid }}</td>
+
+                <td>{{ transaction.status }}</td>
+
+                {% if transaction.status == "Pending" %}
+                    {% if transaction.type == "Deposit" %}
+                        <td><a href="/tid-{{ transaction.id }}">Confirm</a></td>
+                    {% else %}
+                        <td><a href="/xid-{{ transaction.id }}">Insert</a></td>
+                    {% endif %}
+                {% else %}
+                    <td></td>
+                {% endif %}
+
+                <td>{{ transaction.time }}</td>
+
+            </tr>
+        {% endfor %}
+
+    </table>
+{% endblock %}

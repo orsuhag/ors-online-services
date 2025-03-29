@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    REGISTER
+{% endblock %}
+
+{% block main %}
+    <div class="text-center bg-light border">
+
+        <div class="bg-success p-3">
+            <h6><i class="fa fa-user-circle"></i> Registration Form</h6>
+        </div>
+
+        <div class="container p-3">
+
+            <form action="/register" method="post">
+
+                <label for="type" class="d-inline">Select Type:</label>
+                <div id="type" class="form-group d-inline">
+
+                    <input type="radio" id="provider" name="type" value="provider" required>
+                    <label for="provider">Provider</label>
+
+                    <input type="radio" id="customer" name="type" value="customer" required>
+                    <label for="customer">Customer</label>
+
+                </div>
+
+                <div class="form-group">
+                    <input class="form-control" name="email" placeholder="Email Address" type="email" required>
+                </div>
+
+                <div class="form-group">
+                    <input class="form-control" name="name" placeholder="Full Name" type="text" required>
+                </div>
+
+                <div class="form-group">
+                    <input class="form-control" name="username" placeholder="Username" type="text" required>
+                </div>
+
+                <div class="form-group">
+                    <input class="form-control" name="password" placeholder="Password" type="password" pattern="[A-Za-z0-9]{6,}" required title="Password must contain at least 6 characters and special characters are not allowed.">
+                </div>
+
+                <div class="form-group">
+                    <input class="form-control" name="confirmation" placeholder="Password (again)" type="password" required>
+                </div>
+
+                <button class="btn btn-success" type="submit">Register</button>
+
+            </form>
+
+        </div>
+
+    </div>
+{% endblock %}

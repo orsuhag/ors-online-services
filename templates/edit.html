@@ -1,0 +1,124 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    EDIT#{{ service_id }}
+{% endblock %}
+
+{% block main %}
+    <div class="text-center bg-light border">
+
+        <div class="bg-success p-3">
+
+            <h6>
+                <i class="fa fa-pencil-square"></i> Edit Service
+            </h6>
+
+        </div>
+
+        <div class="container p-3">
+
+            <form action="/edit-{{ service_id }}" method="post">
+
+                <div class="btn btn-success d-block mb-3">Selection</div>
+
+                <div class="form-group">
+
+                    <select class="form-control form-select" name="service" required>
+
+                        <option selected value="{{ row.service }}">{{ row.service }}</option>
+
+                        <option class="bg-success text-white text-center" disabled value="">Section</option>
+                        <option value="Accommodation">Accommodation</option>
+                        <option value="Consultancy">Consultancy</option>
+                        <option value="Transportation">Transportation</option>
+
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+
+                    <select class="form-control form-select" name="category" required>
+
+                        <option selected value="{{ row.category }}">{{ row.category }}</option>
+
+                        <option class="bg-success text-white text-center" disabled value="">Accommodation</option>
+                        <option value="House">House</option>
+                        <option value="Warehouse">Warehouse</option>
+                        <option value="Resort">Resort</option>
+                        <option value="Hotel">Hotel</option>
+
+                        <option class="bg-success text-white text-center" disabled value="">Consultancy</option>
+                        <option value="Education">Education</option>
+                        <option value="Health">Health</option>
+                        <option value="Business">Business</option>
+                        <option value="Innovation">Innovation</option>
+
+                        <option class="bg-success text-white text-center" disabled value="">Transportation</option>
+                        <option value="Taxi">Taxi</option>
+                        <option value="Car">Car</option>
+                        <option value="Bus">Bus</option>
+                        <option value="Truck">Truck</option>
+
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+
+                    <select class="form-control form-select" name="location" required>
+
+                        <option selected value="{{ row.location }}">{{ row.location }}</option>
+
+                        <option class="bg-success text-white text-center" disabled value="">Region</option>
+                        <option value="Dhaka">Dhaka</option>
+                        <option value="Chittagong">Chittagong</option>
+                        <option value="Rajshahi">Rajshahi</option>
+                        <option value="Khulna">Khulna</option>
+                        <option value="Barisal">Barisal</option>
+                        <option value="Sylhet">Sylhet</option>
+                        <option value="Rangpur">Rangpur</option>
+                        <option value="Mymensingh">Mymensingh</option>
+
+                    </select>
+
+                </div>
+
+                <div class="btn btn-success d-block my-3">Documentation</div>
+
+                <div class="form-group">
+
+                    <label for="title" class="form-control btn btn-outline-success my-3">Title</label>
+                    <textarea id="title" class="form-control" name="title" placeholder="Maximum 50 characters" maxlength="50" required style="height:200px">{{ row.title }}</textarea>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="revenue" class="form-control btn btn-outline-success my-3">Revenue</label>
+                    <input id="revenue" class="form-control" name="revenue" placeholder="$ per time" type="number" min="0" required value="{{ row.revenue }}">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="details" class="form-control btn btn-outline-success my-3">Details</label>
+                    <textarea id="details" class="form-control" name="details" placeholder="Maximum 250 characters" maxlength="250" required style="height:200px">{{ row.details }}</textarea>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="image" class="form-control btn btn-outline-success my-3">Image</label>
+                    <input id="image" class="form-control" name="image" placeholder="https://i.ibb.co/.../image.jpg" type="url" value="{{ row.image }}">
+
+                </div>
+
+                <button class="btn btn-success" type="submit">Edit</button>
+
+            </form>
+
+        </div>
+
+    </div>
+{% endblock %}

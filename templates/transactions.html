@@ -1,0 +1,81 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    TRANSACTIONS
+{% endblock %}
+
+{% block main %}
+    <table class="table table-striped table-hover table-responsive-md">
+
+        <tr>
+
+            <th>#</th>
+
+            <th>Type</th>
+
+            <th>From</th>
+
+            <th>To</th>
+
+            <th>Amount</th>
+
+            <th>XID</th>
+
+            <th>Status</th>
+
+            <th>Action</th>
+
+            <th>Transacted</th>
+
+        </tr>
+
+        {% for transaction in transactions %}
+            <tr>
+
+                <th>{{ transaction.id }}</th>
+
+                <td>{{ transaction.type }}</td>
+
+                {% for user in users %}
+                    {% if user.id == transaction.user %}
+                        <td>{{ user.email }}</td>
+                    {% endif %}
+                {% endfor %}
+
+                <td>{{ transaction.entity }}</td>
+
+                <td>{{ transaction.amount | usd }}</td>
+
+                <td>{{ transaction.xid }}</td>
+
+                <td>{{ transaction.status }}</td>
+
+                {% if transaction.status == "Pending" %}
+                    {% if transaction.type == "Receive" %}
+                        {% if transaction.entity == email %}
+                            <td><a href="/send-{{ transaction.id }}">Send</a></td>
+                        {% else %}
+                            <td></td>
+                        {% endif %}
+                    {% elif transaction.type == "Send" %}
+                        {% if transaction.entity == email %}
+                            <td><a href="/receive-{{ transaction.id }}">Receive</a></td>
+                        {% else %}
+                            <td></td>
+                        {% endif %}
+                    {% elif transaction.type == "Deposit" %}
+                        <td></td>
+                    {% elif transaction.type == "Withdraw" %}
+                        <td><a href="/ensure-{{ transaction.id }}">Ensure</a></td>
+                    {% endif %}
+                {% else %}
+                    <td></td>
+                {% endif %}
+
+                <td>{{ transaction.time }}</td>
+
+            </tr>
+        {% endfor %}
+
+    </table>
+{% endblock %}

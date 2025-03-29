@@ -1,0 +1,151 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    PROFILE
+{% endblock %}
+
+{% block main %}
+    <div class="bg-light text-center p-2 border">
+
+        <div class="m-2">
+
+            <img src="{{ info.image }}" border="0" alt="image" height="144" width="144">
+
+        </div>
+
+        <div class="btn btn-outline-success m-2">{{ info.username }} | {{ info.type }}</div>
+
+        <div class="h6 m-2">{{ info.email }}</div>
+
+        <div class="btn btn-success small m-2">Joined : {{ info.date }}</div>
+
+    </div>
+
+    <div class="bg-light text-left mt-5 border">
+
+        <div class="bg-success text-center mb-2 p-2">
+
+            <h6>Personal Information</h6>
+
+        </div>
+
+        <div class="p-2">
+
+            <div class="m-2">
+                <p><span class="text-muted">Full Name : </span>{{ info.name }}</p>
+            </div>
+
+            <div class="m-2">
+                <p><span class="text-muted">Father's Name : </span>{{ info.father }}</p>
+            </div>
+
+            <div class="m-2">
+                <p><span class="text-muted">Mother's Name : </span>{{ info.mother }}</p>
+            </div>
+
+            <div class="m-2">
+                <p><span class="text-muted">Profession : </span>{{ info.profession }}</p>
+            </div>
+
+            <div class="m-2">
+                <p><span class="text-muted">National ID : </span>{{ info.nid }}</p>
+            </div>
+
+        </div>
+
+        <div class="bg-success text-center my-2 p-2">
+
+            <h6>Address Information</h6>
+
+        </div>
+
+        <div class="p-2">
+
+            <div class="m-2">
+                <p><span class="text-muted">Road/Village : </span>{{ info.line }}</p>
+            </div>
+
+            <div class="m-2">
+                <p><span class="text-muted">House/Holding : </span>{{ info.no }}</p>
+            </div>
+
+            <div class="m-2">
+                <p><span class="text-muted">Area : </span>{{ info.area }}</p>
+            </div>
+
+            <div class="m-2">
+                <p><span class="text-muted">ZIP/Postal Code : </span>{{ info.code }}</p>
+            </div>
+
+            <div class="m-2">
+                <p><span class="text-muted">City : </span>{{ info.city }}</p>
+            </div>
+
+            <div class="m-2">
+                <p><span class="text-muted">Region : </span>{{ info.region }}</p>
+            </div>
+
+            <div class="m-2">
+                <p><span class="text-muted">Country : </span>{{ info.country }}</p>
+            </div>
+
+        </div>
+
+        <div class="bg-success text-center my-2 p-2">
+
+            <h6>About Information</h6>
+
+        </div>
+
+        <div class="text-center p-2">
+
+            <div class="m-2">
+                <p>{{ info.about }}</p>
+            </div>
+
+        </div>
+
+        <div class="bg-white text-center m-2 p-2 border">
+            <a href="/info">Edit Profile</a>
+        </div>
+
+        <div class="bg-white text-center m-2 p-2 border">
+            <a href="/password">Change Password</a>
+        </div>
+
+    </div>
+
+    <div class="bg-light text-left mt-5 border">
+
+        <div class="bg-success text-center mb-2 p-2">
+
+            <h6>Security Questions</h6>
+
+        </div>
+
+        <div class="p-2">
+
+            <div class="m-2">
+                <p><span class="text-muted">Security Code : </span>{{ security.code }}</p>
+            </div>
+
+            <div class="m-2">
+                <p><span class="text-muted">Your Birthplace : </span>{{ security.one }}</p>
+            </div>
+
+            <div class="m-2">
+                <p><span class="text-muted">Your School : </span>{{ security.two }}</p>
+            </div>
+
+            <div class="m-2">
+                <p><span class="text-muted">Your Nickname : </span>{{ security.three }}</p>
+            </div>
+
+        </div>
+
+        <div class="bg-white text-center m-2 p-2 border">
+            <a href="/questions">Edit Questions</a>
+        </div>
+
+    </div>
+{% endblock %}

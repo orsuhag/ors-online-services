@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    SEND#{{ transaction_id }}
+{% endblock %}
+
+{% block main %}
+    <div class="text-center bg-light border">
+
+        <div class="bg-success p-3">
+
+            <h6>
+                <i class="fa fa-adjust"></i> User Confirmation
+            </h6>
+
+        </div>
+
+        <div class="container p-3">
+
+            <form action="/send-{{ transaction_id }}" method="post">
+
+                <div class="form-group">
+
+                    <select class="form-control form-select" name="status" required>
+
+                        <option selected value="{{ transaction.status }}">Select</option>
+
+                        <option class="bg-success text-white text-center" disabled value="">Will you accept receive request?</option>
+                        <option value="Successful">Yes</option>
+                        <option value="Failed">No</option>
+
+                    </select>
+
+                </div>
+
+                <button class="btn btn-success" type="submit">Send</button>
+
+            </form>
+
+        </div>
+
+    </div>
+{% endblock %}

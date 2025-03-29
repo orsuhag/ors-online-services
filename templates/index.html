@@ -1,0 +1,296 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Online Services
+{% endblock %}
+
+{% block main %}
+    {% if session.user_id %}
+        <div class="bg-success text-center p-2 mb-5 border">
+
+            <div class="bg-light container border p-5">
+
+                <h6 class="m-2">Balance : {{ balance | usd }}</h6>
+                <a href="/transactions" class="btn btn-success m-2">Transactions</a>
+
+            </div>
+
+        </div>
+
+        {% if group == "provider" %}
+            <div class="container bg-light text-center mb-5 p-2 border">
+
+                <a href="/add">
+                    <i class="fa fa-plus-circle"></i> Add Service
+                </a>
+
+            </div>
+
+            <div class="bg-success text-center p-3 mb-3">
+
+                <h6>
+                    Accommodation Section
+                </h6>
+
+            </div>
+
+            <div class="row row-cols-1 row-cols-md-4 g-4 bg-light text-center p-2 border">
+
+                {% for row in rows1 %}
+                    <div class="col p-2">
+
+                        <div class="card h-100">
+
+                            <div class="card-body">
+                                <p class="card-title small">
+                                    <strong>{{ row.title }}</strong>
+                                </p>
+                                <p class="card-text small">{{ row.category }} | {{ row.location }}</p>
+                                <a href="/edit-{{ row.id }}" class="btn btn-primary d-block"><small>Edit</small></a><br>
+                                <a href="/empty-{{ row.id }}" class="btn btn-primary d-block"><small>Empty</small></a><br>
+                                <a href="/delete-{{ row.id }}" class="btn btn-primary d-block"><small>Delete</small></a>
+                            </div>
+
+                            <div class="card-footer">
+                                <small class="text-muted">{{ row.revenue | usd }} / day</small>
+                            </div>
+
+                        </div>
+
+                    </div>
+                {% endfor %}
+
+            </div>
+
+            <div class="bg-success text-center p-3 mt-5 mb-3">
+
+                <h6>
+                    Consultancy Section
+                </h6>
+
+            </div>
+
+            <div class="row row-cols-1 row-cols-md-4 g-4 bg-light text-center p-2 border">
+
+                {% for row in rows2 %}
+                    <div class="col p-2">
+
+                        <div class="card h-100">
+
+                            <div class="card-body">
+                                <p class="card-title small">
+                                    <strong>{{ row.title }}</strong>
+                                </p>
+                                <p class="card-text small">{{ row.category }} | {{ row.location }}</p>
+                                <a href="/edit-{{ row.id }}" class="btn btn-primary d-block"><small>Edit</small></a><br>
+                                <a href="/empty-{{ row.id }}" class="btn btn-primary d-block"><small>Empty</small></a><br>
+                                <a href="/delete-{{ row.id }}" class="btn btn-primary d-block"><small>Delete</small></a>
+                            </div>
+
+                            <div class="card-footer">
+                                <small class="text-muted">{{ row.revenue | usd }} / session</small>
+                            </div>
+
+                        </div>
+
+                    </div>
+                {% endfor %}
+
+            </div>
+
+            <div class="bg-success text-center p-3 mt-5 mb-3">
+
+                <h6>
+                    Transportation Section
+                </h6>
+
+            </div>
+
+            <div class="row row-cols-1 row-cols-md-4 g-4 bg-light text-center p-2 border">
+
+                {% for row in rows3 %}
+                    <div class="col p-2">
+
+                        <div class="card h-100">
+
+                            <div class="card-body">
+                                <p class="card-title small">
+                                    <strong>{{ row.title }}</strong>
+                                </p>
+                                <p class="card-text small">{{ row.category }} | {{ row.location }}</p>
+                                <a href="/edit-{{ row.id }}" class="btn btn-primary d-block"><small>Edit</small></a><br>
+                                <a href="/empty-{{ row.id }}" class="btn btn-primary d-block"><small>Empty</small></a><br>
+                                <a href="/delete-{{ row.id }}" class="btn btn-primary d-block"><small>Delete</small></a>
+                            </div>
+
+                            <div class="card-footer">
+                                <small class="text-muted">{{ row.revenue | usd }} / trip</small>
+                            </div>
+
+                        </div>
+
+                    </div>
+                {% endfor %}
+
+            </div>
+        {% elif group == "customer" %}
+            <div class="bg-success text-center p-3 mb-3">
+
+                <h6>
+                    Engaged Services
+                </h6>
+
+            </div>
+
+            <div class="row row-cols-1 row-cols-md-4 g-4 bg-light text-center p-2 border">
+
+                {% for row in rows4 %}
+                    <div class="col p-2">
+
+                        <div class="card h-100">
+
+                            <img src="{{ row.image }}" border="0" class="card-img-top" alt="image" height="240">
+
+                            <div class="card-header bg-success">
+                                <small class="text-white">{{ row.service }} # {{ row.id }}</small>
+                            </div>
+
+                            <div class="card-body">
+                                <p class="card-title small">
+                                    <strong>{{ row.title }}</strong>
+                                </p>
+                                <p class="card-text small">{{ row.category }} | {{ row.location }}</p>
+                            </div>
+
+                            {% if row.service == "Accommodation" %}
+                                <div class="card-footer">
+                                    <small class="text-muted">{{ row.revenue | usd }} / day</small>
+                                </div>
+                            {% elif row.service == "Consultancy" %}
+                                <div class="card-footer">
+                                    <small class="text-muted">{{ row.revenue | usd }} / session</small>
+                                </div>
+                            {% elif row.service == "Transportation" %}
+                                <div class="card-footer">
+                                    <small class="text-muted">{{ row.revenue | usd }} / trip</small>
+                                </div>
+                            {% endif %}
+
+                            <div class="card-footer bg-success">
+                                <small class="text-white">Provider # {{ row.provider }}</small>
+                            </div>
+
+                            <div class="card-footer">
+                                <small class="">{{ row.details }}</small>
+                            </div>
+
+                        </div>
+
+                    </div>
+                {% endfor %}
+
+            </div>
+        {% endif %}
+    {% else %}
+        <div class="row row-cols-1 row-cols-md-2 g-4 bg-light text-center p-2 border">
+
+            <div class="col p-2">
+
+                <div class="card h-100">
+
+                    <img src="https://i.ibb.co/tMvZMTC/accommodation.jpg" border="0" class="card-img-top" alt="accommodation">
+
+                    <div class="card-body">
+
+                        <h5 class="card-title">Accommodation</h5>
+                        <p class="card-text">House, Warehouse, Resort, Hotel</p>
+                        <a href="/accommodation" class="btn btn-success d-block">Explore</a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col p-2">
+
+                <div class="card h-100">
+
+                    <img src="https://i.ibb.co/bHSDY4T/consultancy.jpg" border="0" class="card-img-top" alt="consultancy">
+
+                    <div class="card-body">
+
+                        <h5 class="card-title">Consultancy</h5>
+                        <p class="card-text">Education, Health, Business, Innovation</p>
+                        <a href="/consultancy" class="btn btn-success d-block">Explore</a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col p-2">
+
+                <div class="card h-100">
+
+                    <img src="https://i.ibb.co/wKhP7v0/transportation.jpg" class="card-img-top" alt="transportation">
+
+                    <div class="card-body">
+
+                        <h5 class="card-title">Transportation</h5>
+                        <p class="card-text">Taxi, Car, Bus, Truck</p>
+                        <a href="/transportation" class="btn btn-success d-block">Explore</a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col p-2">
+
+                <div class="card h-100">
+
+                    <img src="https://i.ibb.co/S5zFBRK/payment.jpg" class="card-img-top" alt="payment">
+
+                    <div class="card-body">
+
+                        <h5 class="card-title">Payment</h5>
+                        <p class="card-text">Deposit, Withdraw, Transfer</p>
+                        <a href="/payment" class="btn btn-success d-block">Explore</a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="card bg-light mb-3 mt-5 text-center border">
+
+            <div class="row g-0">
+
+                <div class="col-md-4">
+
+                    <img src="https://i.ibb.co/N7zXMY4/Cover-Page.png" class="img-fluid rounded-start" alt="Cover-Page">
+
+                </div>
+
+                <div class="col-md-8">
+
+                    <div class="card-body">
+
+                        <h5 class="card-title text-success">About Services</h5>
+                        <p class="card-text">We don't own any service itself. Basically, our main target is to connect providers and customers all together. So you are welcome to our network to sell or buy any service. You have to register an account to explore the services.</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    {% endif %}
+{% endblock %}

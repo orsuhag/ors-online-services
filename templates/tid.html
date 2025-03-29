@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    DEPOSIT#{{ transaction_id }}
+{% endblock %}
+
+{% block main %}
+    <div class="text-center bg-light border">
+
+        <div class="bg-success p-3">
+
+            <h6>
+                <i class="fa fa-cogs"></i> Admin Confirmation
+            </h6>
+
+        </div>
+
+        <div class="container p-3">
+
+            <form action="/tid-{{ transaction_id }}" method="post">
+
+                <div class="form-group">
+
+                    <select class="form-control form-select" name="status" required>
+
+                        <option selected value="{{ row.status }}">{{ row.status }}</option>
+
+                        <option class="bg-success text-white text-center" disabled value="">Update Status?</option>
+                        <option value="Successful">Successful</option>
+                        <option value="Failed">Failed</option>
+
+                    </select>
+
+                </div>
+
+                <button class="btn btn-success" type="submit">Confirm</button>
+
+            </form>
+
+        </div>
+
+    </div>
+{% endblock %}
